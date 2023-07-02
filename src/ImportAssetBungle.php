@@ -7,7 +7,7 @@
 
 namespace xpbl4\import;
 
-class ImportAsset extends \yii\web\AssetBundle
+class ImportAssetBungle extends \yii\web\AssetBundle
 {
 	public $sourcePath = '@xpbl4/import/assets';
 
