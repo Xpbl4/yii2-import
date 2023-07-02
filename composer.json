@@ -1,0 +1,45 @@
+{
+  "name": "xpbl4/yii2-import",
+  "description": "Extension for the Yii2 framework for importing Excel data",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "excel",
+    "xls",
+    "xlsx",
+    "csv"
+  ],
+  "homepage": "https://github.com/Xpbl4/yii2-import",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Serge Mashkov",
+      "email": "xpbl4@motorwars.ru",
+      "homepage": "https://github.com/Xpbl4"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/Xpbl4/yii2-import/issues?state=open",
+    "source": "https://github.com/Xpbl4/yii2-import"
+  },
+  "repositories":[
+    {
+      "type": "git",
+      "url": "https://github.com/Xpbl4/yii2-import.git"
+    }
+  ],
+  "require": {
+    "phpoffice/phpspreadsheet": "*",
+    "xpbl4/yii2-assets": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "xpbl4\\import\\": "src"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
