@@ -35,7 +35,7 @@ trait ImportTrait
 		$transaction = \Yii::$app->db->beginTransaction();
 
 		try {
-			$model->setAttributes($_data);
+			$model->setImportAttributes($_data);
 
 			if($model->validate()) {
 				if ($model->save()) {
@@ -60,4 +60,16 @@ trait ImportTrait
 		return $model;
 	}
 
+	/**
+	 * Sets the imported attribute values in a massive way.
+	 * @param array $values attribute values (name => value) to be assigned to the model.
+	 * @param bool $safeOnly whether the assignments should only be done to the safe attributes.
+	 * A safe attribute is one that is associated with a validation rule in the current [[scenario]].
+	 * @see safeAttributes()
+	 * @see attributes()
+	 */
+	public function setImportAttributes($attributes, $safeOnly = true)
+	{
+		$this->setAttributes($attributes, $safeOnly);
+	}
 }
