@@ -32,26 +32,21 @@ trait ImportTrait
 		if (!empty($_primaryKey)) $model = static::findOne($_primaryKey);
 		if ($model == null) $model = new static();
 
-		$transaction = \Yii::$app->db->beginTransaction();
-
 		try {
 			$model->setImportAttributes($_data);
 
-			if($model->validate()) {
-				if ($model->save()) {
-					$transaction->commit();
-				} else {
+			if (!$model->hasErrors()) {
+				if (!$model->save()) {
 					$reader->addError($row, 'Save: '.implode(', ', $model->getFirstErrors()));
 
 					return false;
 				}
 			} else {
-				$reader->addError($row, 'Model: '.implode(', ', $model->getFirstErrors()));
+				$reader->addError($row, 'Model: '.implode(', ', $model->getFirstErrors()).'<!-- pre>'.print_r($_data, true).'</pre -->');
 
 				return false;
 			}
 		} catch (\Exception $e) {
-			$transaction->rollBack();
 			$reader->addError($row, 'Exception: '.$e->getMessage());
 
 			return false;
@@ -71,5 +66,6 @@ trait ImportTrait
 	public function setImportAttributes($attributes, $safeOnly = true)
 	{
 		$this->setAttributes($attributes, $safeOnly);
+		return $this->hasErrors();
 	}
 }
